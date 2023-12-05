@@ -1,0 +1,8 @@
+# .envファイルを除外
+.env
+
+# venv
+venv/
+
+# pythonのキャッシュ
+__pycache__/
