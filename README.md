@@ -6,18 +6,26 @@
 ## 背景
 このプログラムの目的は、弊社メンバーのQiita記事をより多くの人々に届けるための自動化システムを構築することです。コストをできるだけ抑えたかったので、ChatGPT APIのトークン数を節約するために記事を英語に翻訳してから処理しています。
 
+:::note info
+ちゃんと節約効果があるか、当時の記事一式を公式のカウンターで確認しました。
+https://platform.openai.com/tokenizer
+:::
+
 ## 技術スタックとプログラム構成
 - **言語とプラットフォーム**: Python, Cloud Functions for Firebase
 - **主要なモジュール**:
-  - `main.py`: プログラムのエントリーポイントとスケジューラー
+  - `main.py`: プログラムのエントリーポイントとスケジュール設定
+  - `mainfunc.py`: 各プログラムを呼び出し
   - `qiita.py`: Qiita APIを使用して記事を取得
   - `translate.py`: Google Translate APIを利用して記事を英訳
   - `chatgpt.py`: ChatGPT APIを使用して記事の要約を生成
   - `x_twitter.py`: Twitter APIを利用して投稿処理
 
+
 ## 処理フローとシーケンス図
+main.pyは省略
 ### 処理フロー
-1. `main.py` が `qiita.py` を呼び出してQiitaの記事を取得
+1. `mainfunc.py` が `qiita.py` を呼び出してQiitaの記事を取得
 2. `translate.py` で英語に翻訳
 3. `chatgpt.py` で要約を生成
 4. `x_twitter.py` でTwitterに投稿
@@ -25,7 +33,7 @@
 ### シーケンス図
 ```mermaid
 sequenceDiagram
-    participant main as main.py
+    participant main as mainfunc.py
     participant qiita as qiita.py
     participant translate as translate.py
     participant chatgpt as chatgpt.py
